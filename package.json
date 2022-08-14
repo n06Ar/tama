@@ -1,0 +1,12 @@
+{
+  "name": "tama",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:n06Ar/tama.git",
+  "author": "Nobuhito ARAI <nobht_arai@icloud.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@slack/bolt": "^3.12.1"
+  }
+}
