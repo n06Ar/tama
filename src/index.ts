@@ -15,12 +15,10 @@ const client = new Client({
 const TOKEN: string = process.env.DISCORD_TOKEN;
 
 client.once(Events.ClientReady, () => {
-  console.log("ready...");
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on(Events.MessageCreate, async (message) => {
-  console.log({ message });
   if (message.author.bot) return;
 
   if (message.content === "ping") {
