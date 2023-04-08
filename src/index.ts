@@ -1,27 +1,33 @@
-import { App } from "@slack/bolt";
+import { Client, Events, GatewayIntentBits } from "discord.js";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const app = new App({
-  token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET,
-  socketMode: true,
-  appToken: process.env.SLACK_APP_TOKEN,
-  port: 3000,
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent,
+  ],
 });
 
-app.message("*", async ({ message }) => {
-  console.log(message);
+const TOKEN: string = process.env.DISCORD_TOKEN;
+
+client.once(Events.ClientReady, () => {
+  console.log("ready...");
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-app.message("hello", async ({ message, say }) => {
-  if ("user" in message) {
-    await say(`Hello <@${message.user}>!`);
+client.on(Events.MessageCreate, async (message) => {
+  console.log({ message });
+  if (message.author.bot) return;
+
+  if (message.content === "ping") {
+    await message.channel.send("Pong!");
   }
 });
-(async () => {
-  await app.start();
 
-  console.log("Start Tama");
-})();
+client.login(TOKEN).catch((e) => {
+  console.log({ e });
+});
