@@ -25,6 +25,10 @@ class TMClient {
    */
   async start() {
     try {
+      this.client.once(Events.ClientReady, () => {
+        console.log(`Logged in as ${this.client.user.tag}!`);
+      });
+
       await this.client.login(TOKEN);
     } catch (error) {
       console.error({ error });
