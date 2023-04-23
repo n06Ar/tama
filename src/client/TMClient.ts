@@ -1,5 +1,5 @@
 import { Client, Events, GatewayIntentBits } from "discord.js";
-import { TMMessageEvent } from "../type.d/TMMessageEvent";
+import TMMessageEvent from "../type.d/TMMessageEvent";
 
 const TOKEN: string = process.env.DISCORD_TOKEN;
 class TMClient {
