@@ -6,15 +6,6 @@ dotenv.config();
 
 const mtClient = new TMClient();
 
-mtClient.addMessageResponse(messages);
-
-mtClient
-  .addMessageResponse([
-    {
-      targetMessage: "pong",
-      responseMessage: "Ping!",
-    },
-  ])
-  .finally();
+mtClient.addMessageResponse(messages).finally();
 
 mtClient.start();
